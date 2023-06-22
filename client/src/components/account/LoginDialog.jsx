@@ -1,4 +1,4 @@
-import React,{useContext} from 'react';
+import React, { useContext, useEffect } from 'react';
 import { GoogleLogin } from '@react-oauth/google';
 import { Dialog, Typography, List, ListItem, Box, styled } from '@mui/material';
 import { qrCodeImage } from '../../constants/data';
@@ -45,17 +45,21 @@ const QRCOde = styled('img')({
 });
 
 const LoginDialog = () => {
-    const {setAccount} = useContext(AccountContext);
+    const { setAccount } = useContext(AccountContext);
 
-        const onLoginSuccess = async (res) => {
-            console.log('Login Success:', res);
+    const onLoginSuccess = async (res) => {
+        console.log('Login Success:', res);
 
         // let decoded = jwt_decode(res.credential);
-        setAccount({"user": "Abhik"});
+        setAccount({ "user": "Abhik" });
         // setShowloginButton(false);
         // setShowlogoutButton(true);
         // await addUser(decoded);
     };
+
+    useEffect(()=>{
+        onLoginSuccess("sucess")
+    },[])
 
     const onLoginFailure = (res) => {
         console.log('Login Failed:', res);
@@ -79,11 +83,11 @@ const LoginDialog = () => {
                 <Box style={{ position: 'relative' }}>
                     <QRCOde src={qrCodeImage} alt="QR Code" />
                     <Box style={{ position: 'absolute', top: '50%', transform: 'translateX(35%) translateY(-25%)' }}>
-                        <GoogleLogin
+                        {/* <GoogleLogin
                             buttonText=""
                             onSuccess={onLoginSuccess}
                             onError={onLoginFailure}
-                        />
+                        /> */}
                     </Box>
                 </Box>
 

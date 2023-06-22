@@ -16,6 +16,11 @@ const Header = styled(AppBar)`
   height: 125px;
   box-shadow: none;
 `;
+const LoginHeader = styled(AppBar)`
+    background: #00bfa5;
+    height: 200px;
+    box-shadow: none;
+`;
 
 const Messenger = () => {
   const { account } = useContext(AccountContext);
@@ -23,12 +28,18 @@ const Messenger = () => {
     <>
     <Component>
       {
-        account ? <ChatDialog/>
-        :
+        account ? 
         <>
         <Header>
           <Toolbar/>
         </Header>
+        <ChatDialog/>
+        </>
+        :
+        <>
+          <LoginHeader>
+              <Toolbar/>
+          </LoginHeader>
         <LoginDialog/>
         </>
       }
